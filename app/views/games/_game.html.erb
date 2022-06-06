@@ -9,4 +9,8 @@
     <%= game.discription %>
   </p>
 
+  <% game.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+  <% end %>
+
 </div>
