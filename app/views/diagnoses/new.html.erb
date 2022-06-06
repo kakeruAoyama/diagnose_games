@@ -1,0 +1,27 @@
+<h1>Diagnoses#new</h1>
+<p>Find me in app/views/diagnoses/new.html.erb</p>
+
+<% tags = Tag.select(&:name) %>
+<% questions = [
+  {title: "何人で遊びますか？", number: 4},
+  {title: "誰と遊びますか？", number: 3},
+  {title: "シチュエーションは？", number: 4},
+  {title: "遊ぶ人の世代は？", number: 3},
+  {title: "プレイ時間は？", number: 3},
+  {title: "ゲームの種類は?", number: 12},
+] %>
+<% question_id = 1 %>
+
+<%= form_tag diagnoses_index_path, method: :get do %>
+  <% questions.each do |q| %>
+    <div class="question-container">
+      <%= q[:title] %>
+      <% tags.shift(q[:number]).each do |t| %>
+        <input type="checkbox" id="checkbox<%= question_id %>" name="answer[]" value="<%= question_id %>" >
+        <label for="checkbox<%= question_id %>"><%= t.name %></label>
+        <% question_id += 1 %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= submit_tag %>
+<% end %>

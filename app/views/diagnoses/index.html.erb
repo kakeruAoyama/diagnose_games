@@ -1,0 +1,20 @@
+<h1>Diagnoses#index</h1>
+<p>Find me in app/views/diagnoses/index.html.erb</p>
+
+マッチ度：
+<%= @mach_tag_count.to_f / params[:answer].length.to_f * 100 %> %
+
+<% @mached_games.each do |game| %>
+  <div class="game-container">
+    Game名:<%= game.name %><br>
+    説明:<%= game.discription %><br>
+    タグ:
+    <% game.tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to "診断へ", diagnoses_new_path %>
+<%= link_to "New game", new_game_path %>
+
